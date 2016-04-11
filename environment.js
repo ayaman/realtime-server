@@ -3,11 +3,12 @@ module.exports = {
     loadSocketIo: function loadSocketIo(redis) {
 
         var port = process.env.PORT || 5001;
-        if (process.env.NODE_ENV != 'production') {
+        var env = process.env.NODE_ENV || 'development';
+        if (env != 'production') {
             port = 5001; // run on a different port when in non-production mode.
         }
 
-        console.log('STARTING ON PORT: ' + port);
+        console.log('Starting realtime server in ' + env + ' on port ' + port);
 
         var io = require('socket.io').listen(Number(port));
 
